@@ -2,219 +2,974 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NurseFlow 🩺</title>
+<title>NurseFlow 🩺</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", "Segoe UI", sans-serif;
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f7fbfc;
+  color: #263b42;
+}
+
+/* HEADER */
+
+header {
+  height: 75px;
+  background: white;
+  border-bottom: 1px solid #e7eff1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 23px;
+  font-weight: 800;
+  color: #168b91;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: #dff7f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f9dce8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+
+/* MAIN */
+
+main {
+  width: min(1150px, 90%);
+  margin: 35px auto;
+}
+
+
+/* PAGE TITLE */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  font-size: 31px;
+}
+
+.page-header p {
+  color: #84969c;
+  margin-top: 6px;
+}
+
+.add-button {
+  border: none;
+  background: #168b91;
+  color: white;
+  padding: 13px 20px;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.add-button:hover {
+  transform: translateY(-2px);
+  background: #11777c;
+}
+
+
+/* SEARCH */
+
+.search-box {
+  background: white;
+  border: 1px solid #e5edef;
+  border-radius: 17px;
+  padding: 15px 18px;
+  margin-bottom: 22px;
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  background: transparent;
+}
+
+
+/* PATIENT GRID */
+
+.patient-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+
+/* PATIENT CARD */
+
+.patient-card {
+  background: white;
+  border: 1px solid #e6eef0;
+  border-radius: 22px;
+  padding: 22px;
+  transition: .25s;
+}
+
+.patient-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(30, 100, 110, .09);
+}
+
+.patient-top {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 20px;
+}
+
+.patient-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 17px;
+  background: #e3f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+}
+
+.patient-name {
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.patient-info {
+  font-size: 12px;
+  color: #8a9ba0;
+  margin-top: 4px;
+}
+
+.status {
+  margin-left: auto;
+  font-size: 10px;
+  padding: 6px 9px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.stable {
+  background: #e3f7e9;
+  color: #37945a;
+}
+
+.attention {
+  background: #fff1d6;
+  color: #bd7b14;
+}
+
+.patient-details {
+  border-top: 1px solid #edf2f3;
+  padding-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.detail {
+  background: #f7fafb;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.detail span {
+  display: block;
+  font-size: 10px;
+  color: #91a0a5;
+  margin-bottom: 4px;
+}
+
+.detail strong {
+  font-size: 13px;
+}
+
+
+/* VIEW BUTTON */
+
+.view-button {
+  width: 100%;
+  margin-top: 17px;
+  border: none;
+  background: #eef9f9;
+  color: #168b91;
+  padding: 11px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.view-button:hover {
+  background: #dff5f4;
+}
+
+
+/* MODAL */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 50, 55, .35);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-box {
+  width: min(500px, 100%);
+  background: white;
+  border-radius: 25px;
+  padding: 27px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.15);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.close {
+  border: none;
+  background: #f2f5f5;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dfeaec;
+  border-radius: 12px;
+  outline: none;
+}
+
+.save-button {
+  width: 100%;
+  border: none;
+  background: #168b91;
+  color: white;
+  padding: 13px;
+  border-radius: 13px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+
+/* MOBILE NAV */
+
+.mobile-nav {
+  display: none;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+
+  .patient-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 0 5%;
+  }
+
+  .profile span {
+    display: none;
+  }
+
+  main {
+    width: 92%;
+    margin-bottom: 90px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .page-header h1 {
+    font-size: 25px;
+  }
+
+  .add-button {
+    padding: 10px 13px;
+    font-size: 12px;
+  }
+
+  .patient-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #e5edef;
+    display: flex;
+    justify-content: space-around;
+    padding: 11px 4px;
+    z-index: 20;
+  }
+
+  .nav-item {
+    border: none;
+    background: none;
+    color: #8b9da2;
+    font-size: 10px;
+  }
+
+  .nav-item.active {
+    color: #168b91;
+    font-weight: 700;
+  }
+
+  .nav-icon {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 3px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+  <div class="logo">
+    <div class="logo-icon">🩺</div>
+    NurseFlow
+  </div>
+
+  <div class="profile">
+    <span>Good evening, Nurse 💗</span>
+    <div class="avatar">👩🏻‍⚕️</div>
+  </div>
+
+</header>
+
+
+
+<!-- MAIN -->
+
+<main>
+
+
+  <!-- TITLE -->
+
+  <div class="page-header">
+
+    <div>
+      <h1>My Patients 👩‍⚕️</h1>
+      <p>Manage and monitor your patients.</p>
+    </div>
+
+    <button class="add-button" onclick="openModal()">
+      ＋ Add Patient
+    </button>
+
+  </div>
+
+
+
+  <!-- SEARCH -->
+
+  <div class="search-box">
+
+    🔎
+
+    <input
+      type="text"
+      id="search"
+      placeholder="Search patient..."
+      onkeyup="searchPatients()"
+    >
+
+  </div>
+
+
+
+  <!-- PATIENTS -->
+
+  <div class="patient-grid" id="patientGrid">
+
+
+    <!-- PATIENT 1 -->
+
+    <div class="patient-card">
+
+      <div class="patient-top">
+
+        <div class="patient-avatar">👵🏻</div>
+
+        <div>
+          <div class="patient-name">
+            Marie Dupont
+          </div>
+
+          <div class="patient-info">
+            Room 204 · 67 years
+          </div>
+        </div>
+
+        <span class="status stable">
+          Stable
+        </span>
+
+      </div>
+
+
+      <div class="patient-details">
+
+        <div class="detail">
+          <span>Blood pressure</span>
+          <strong>120 / 80</strong>
+        </div>
+
+        <div class="detail">
+          <span>Heart rate</span>
+          <strong>72 bpm</strong>
+        </div>
+
+        <div class="detail">
+          <span>Temperature</span>
+          <strong>36.7°C</strong>
+        </div>
+
+        <div class="detail">
+          <span>Oxygen</span>
+          <strong>98%</strong>
+        </div>
+
+      </div>
+
+      <button
+        class="view-button"
+        onclick="viewPatient('Marie Dupont')"
+      >
+        View patient →
+      </button>
+
+    </div>
+
+
+
+    <!-- PATIENT 2 -->
+
+    <div class="patient-card">
+
+      <div class="patient-top">
+
+        <div class="patient-avatar">👨🏻</div>
+
+        <div>
+          <div class="patient-name">
+            Ahmed Ben Ali
+          </div>
+
+          <div class="patient-info">
+            Room 208 · 54 years
+          </div>
+        </div>
+
+        <span class="status attention">
+          Attention
+        </span>
+
+      </div>
+
+
+      <div class="patient-details">
+
+        <div class="detail">
+          <span>Blood pressure</span>
+          <strong>135 / 85</strong>
+        </div>
+
+        <div class="detail">
+          <span>Heart rate</span>
+          <strong>86 bpm</strong>
+        </div>
+
+        <div class="detail">
+          <span>Temperature</span>
+          <strong>37.1°C</strong>
+        </div>
+
+        <div class="detail">
+          <span>Oxygen</span>
+          <strong>96%</strong>
+        </div>
+
+      </div>
+
+      <button
+        class="view-button"
+        onclick="viewPatient('Ahmed Ben Ali')"
+      >
+        View patient →
+      </button>
+
+    </div>
+
+
+
+    <!-- PATIENT 3 -->
+
+    <div class="patient-card">
+
+      <div class="patient-top">
+
+        <div class="patient-avatar">👩🏻</div>
+
+        <div>
+          <div class="patient-name">
+            Sophie Martin
+          </div>
+
+          <div class="patient-info">
+            Room 211 · 31 years
+          </div>
+        </div>
+
+        <span class="status stable">
+          Stable
+        </span>
+
+      </div>
+
+
+      <div class="patient-details">
+
+        <div class="detail">
+          <span>Blood pressure</span>
+          <strong>118 / 76</strong>
+        </div>
+
+        <div class="detail">
+          <span>Heart rate</span>
+          <strong>68 bpm</strong>
+        </div>
+
+        <div class="detail">
+          <span>Temperature</span>
+          <strong>36.5°C</strong>
+        </div>
+
+        <div class="detail">
+          <span>Oxygen</span>
+          <strong>99%</strong>
+        </div>
+
+      </div>
+
+      <button
+        class="view-button"
+        onclick="viewPatient('Sophie Martin')"
+      >
+        View patient →
+      </button>
+
+    </div>
+
+
+  </div>
+
+</main>
+
+
+
+<!-- ADD PATIENT MODAL -->
+
+<div class="modal" id="patientModal">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Add Patient 🩺</h2>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Patient name</label>
+
+      <input
+        type="text"
+        id="patientName"
+        placeholder="e.g. Sara Ben Ali"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Age</label>
+
+      <input
+        type="number"
+        id="patientAge"
+        placeholder="Age"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Room</label>
+
+      <input
+        type="text"
+        id="patientRoom"
+        placeholder="e.g. 215"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Status</label>
+
+      <select id="patientStatus">
+
+        <option>Stable</option>
+        <option>Attention</option>
+
+      </select>
+
+    </div>
+
+
+    <button
+      class="save-button"
+      onclick="savePatient()"
+    >
+      Add Patient
+    </button>
+
+  </div>
+
+</div>
+
+
+
+<!-- MOBILE NAV -->
+
+<nav class="mobile-nav">
+
+  <button class="nav-item">
+    <span class="nav-icon">🏠</span>
+    Home
+  </button>
+
+  <button class="nav-item active">
+    <span class="nav-icon">👩‍⚕️</span>
+    Patients
+  </button>
+
+  <button class="nav-item">
+    <span class="nav-icon">🗓️</span>
+    Schedule
+  </button>
+
+  <button class="nav-item">
+    <span class="nav-icon">📝</span>
+    Notes
+  </button>
+
+  <button class="nav-item">
+    <span class="nav-icon">⚙️</span>
+    Settings
+  </button>
+
+</nav>
+
+
+
+<script>
+
+
+/* SEARCH PATIENTS */
+
+function searchPatients() {
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase();
+
+  const cards =
+    document.querySelectorAll(".patient-card");
+
+  cards.forEach(card => {
+
+    const name =
+      card
+        .querySelector(".patient-name")
+        .textContent
+        .toLowerCase();
+
+    if (name.includes(search)) {
+      card.style.display = "";
+    } else {
+      card.style.display = "none";
     }
 
-    body {
-      background: #f7fbfc;
-      color: #243b43;
-    }
+  });
 
-    button {
-      font-family: inherit;
-      cursor: pointer;
-    }
+}
 
-    /* ================= HEADER ================= */
 
-    header {
-      background: white;
-      padding: 18px 7%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #e8f0f2;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 23px;
-      font-weight: 800;
-      color: #168b91;
-    }
+/* MODAL */
 
-    .logo-icon {
-      width: 42px;
-      height: 42px;
-      background: #dff7f5;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 23px;
-    }
+function openModal() {
 
-    .profile {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+  document
+    .getElementById("patientModal")
+    .classList.add("active");
 
-    .profile-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #f8dfe9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
+}
 
-    /* ================= MAIN ================= */
 
-    main {
-      width: min(1200px, 90%);
-      margin: 35px auto;
-    }
+function closeModal() {
 
-    .welcome {
-      margin-bottom: 30px;
-    }
+  document
+    .getElementById("patientModal")
+    .classList.remove("active");
 
-    .welcome h1 {
-      font-size: 32px;
-      margin-bottom: 7px;
-    }
+}
 
-    .welcome p {
-      color: #789097;
-    }
 
-    /* ================= STATS ================= */
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-bottom: 30px;
-    }
+/* ADD PATIENT */
 
-    .stat-card {
-      background: white;
-      padding: 22px;
-      border-radius: 20px;
-      border: 1px solid #e8f0f2;
-      transition: 0.2s;
-    }
+function savePatient() {
 
-    .stat-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(30, 100, 110, 0.08);
-    }
+  const name =
+    document.getElementById("patientName").value;
 
-    .stat-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
+  const age =
+    document.getElementById("patientAge").value;
 
-    .stat-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
+  const room =
+    document.getElementById("patientRoom").value;
 
-    .teal {
-      background: #dff7f5;
-    }
+  const status =
+    document.getElementById("patientStatus").value;
 
-    .pink {
-      background: #fbe4ed;
-    }
 
-    .yellow {
-      background: #fff4d7;
-    }
+  if (!name || !age || !room) {
 
-    .blue {
-      background: #e3f0ff;
-    }
+    alert("Please fill in all fields 🩺");
 
-    .stat-number {
-      font-size: 28px;
-      font-weight: 800;
-    }
+    return;
 
-    .stat-label {
-      color: #84979d;
-      font-size: 14px;
-    }
+  }
 
-    /* ================= GRID ================= */
 
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 22px;
-    }
+  const grid =
+    document.getElementById("patientGrid");
 
-    .section {
-      background: white;
-      border: 1px solid #e8f0f2;
-      border-radius: 22px;
-      padding: 24px;
-      margin-bottom: 22px;
-    }
 
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+  const statusClass =
+    status === "Stable"
+      ? "stable"
+      : "attention";
 
-    .section-title h2 {
-      font-size: 19px;
-    }
 
-    .see-all {
-      color: #168b91;
-      font-size: 13px;
-      font-weight: 700;
-      border: none;
-      background: none;
-    }
+  const card = document.createElement("div");
 
-    /* ================= PATIENTS ================= */
+  card.className = "patient-card";
 
-    .patient {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 0;
-      border-bottom: 1px solid #edf2f3;
-    }
 
-    .patient:last-child {
-      border-bottom: none;
-    }
+  card.innerHTML = `
 
-    .patient-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    <div class="patient-top">
 
-    .
+      <div class="patient-avatar">
+        👤
+      </div>
+
+      <div>
+
+        <div class="patient-name">
+          ${name}
+        </div>
+
+        <div class="patient-info">
+          Room ${room} · ${age} years
+        </div>
+
+      </div>
+
+      <span class="status ${statusClass}">
+        ${status}
+      </span>
+
+    </div>
+
+
+    <div class="patient-details">
+
+      <div class="detail">
+        <span>Blood pressure</span>
+        <strong>—</strong>
+      </div>
+
+      <div class="detail">
+        <span>Heart rate</span>
+        <strong>—</strong>
+      </div>
+
+      <div class="detail">
+        <span>Temperature</span>
+        <strong>—</strong>
+      </div>
+
+      <div class="detail">
+        <span>Oxygen</span>
+        <strong>—</strong>
+      </div>
+
+    </div>
+
+
+    <button
+      class="view-button"
+      onclick="viewPatient('${name}')"
+    >
+      View patient →
+    </button>
+
+  `;
+
+
+  grid.appendChild(card);
+
+
+  document.getElementById("patientName").value = "";
+  document.getElementById("patientAge").value = "";
+  document.getElementById("patientRoom").value = "";
+
+  closeModal();
+
+}
+
+
+
+/* VIEW PATIENT */
+
+function viewPatient(name) {
+
+  alert(
+    "Patient profile for " +
+    name +
+    " 🩺\n\nPatient profile page coming next!"
+  );
+
+}
+
+</script>
+
+
+</body>
+</html>
 ```
