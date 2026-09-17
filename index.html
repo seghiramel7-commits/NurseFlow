@@ -959,11 +959,216 @@ function savePatient() {
 
 function viewPatient(name) {
 
-  alert(
-    "Patient profile for " +
-    name +
-    " 🩺\n\nPatient profile page coming next!"
-  );
+ function viewPatient(name) {
+
+  const profile = `
+    <div style="
+      position:fixed;
+      inset:0;
+      background:rgba(30,50,55,.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      z-index:100;
+    ">
+
+      <div style="
+        background:white;
+        width:min(600px,100%);
+        max-height:90vh;
+        overflow:auto;
+        border-radius:28px;
+        padding:28px;
+        box-shadow:0 20px 60px rgba(0,0,0,.2);
+      ">
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          margin-bottom:25px;
+        ">
+
+          <div>
+            <div style="font-size:42px;">👩‍⚕️</div>
+            <h2 style="margin-top:8px;color:#168b91;">
+              ${name}
+            </h2>
+            <p style="color:#8a9ba0;font-size:13px;">
+              Patient profile
+            </p>
+          </div>
+
+          <button
+            onclick="this.parentElement.parentElement.parentElement.remove()"
+            style="
+              border:none;
+              background:#f2f5f5;
+              width:38px;
+              height:38px;
+              border-radius:50%;
+              cursor:pointer;
+              font-size:17px;
+            "
+          >
+            ✕
+          </button>
+
+        </div>
+
+
+        <div style="
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:12px;
+          margin-bottom:22px;
+        ">
+
+          <div style="
+            background:#f2faf9;
+            padding:16px;
+            border-radius:16px;
+          ">
+            <small style="color:#8a9ba0;">
+              ❤️ Heart rate
+            </small>
+            <h3 style="margin-top:6px;">
+              72 bpm
+            </h3>
+          </div>
+
+
+          <div style="
+            background:#fff5f8;
+            padding:16px;
+            border-radius:16px;
+          ">
+            <small style="color:#8a9ba0;">
+              🩸 Blood pressure
+            </small>
+            <h3 style="margin-top:6px;">
+              120 / 80
+            </h3>
+          </div>
+
+
+          <div style="
+            background:#fff9e9;
+            padding:16px;
+            border-radius:16px;
+          ">
+            <small style="color:#8a9ba0;">
+              🌡️ Temperature
+            </small>
+            <h3 style="margin-top:6px;">
+              36.7°C
+            </h3>
+          </div>
+
+
+          <div style="
+            background:#eef6ff;
+            padding:16px;
+            border-radius:16px;
+          ">
+            <small style="color:#8a9ba0;">
+              🫁 Oxygen
+            </small>
+            <h3 style="margin-top:6px;">
+              98%
+            </h3>
+          </div>
+
+        </div>
+
+
+        <div style="
+          background:#f8fbfc;
+          padding:18px;
+          border-radius:18px;
+          margin-bottom:15px;
+        ">
+
+          <h3 style="color:#168b91;margin-bottom:10px;">
+            💊 Medications
+          </h3>
+
+          <p style="font-size:14px;color:#667b82;">
+            No medications recorded yet.
+          </p>
+
+        </div>
+
+
+        <div style="
+          background:#f8fbfc;
+          padding:18px;
+          border-radius:18px;
+          margin-bottom:15px;
+        ">
+
+          <h3 style="color:#168b91;margin-bottom:10px;">
+            📝 Nursing Notes
+          </h3>
+
+          <textarea
+            placeholder="Write a nursing note..."
+            style="
+              width:100%;
+              min-height:100px;
+              border:1px solid #dfeaec;
+              border-radius:12px;
+              padding:12px;
+              resize:vertical;
+              outline:none;
+            "
+          ></textarea>
+
+          <button
+            onclick="alert('Note saved 📝💗')"
+            style="
+              margin-top:10px;
+              border:none;
+              background:#168b91;
+              color:white;
+              padding:11px 18px;
+              border-radius:12px;
+              font-weight:bold;
+              cursor:pointer;
+            "
+          >
+            Save Note
+          </button>
+
+        </div>
+
+
+        <div style="
+          background:#fff5f8;
+          padding:16px;
+          border-radius:16px;
+        ">
+
+          <strong>🩺 Nurse reminder</strong>
+
+          <p style="
+            color:#7f9298;
+            font-size:13px;
+            margin-top:6px;
+          ">
+            Remember to document important changes
+            in the patient's condition.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML("beforeend", profile);
 
 }
 
